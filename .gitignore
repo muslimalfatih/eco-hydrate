@@ -1,114 +1,66 @@
-# Dependencies
+# Node.js dependencies
 node_modules/
+.pnpm-store/
+
+# Build outputs
+dist/
+.next/
+out/
+coverage/
+build/
+
+# Logs & temp
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
+*.tsbuildinfo
 
-# Build outputs
-dist/
-build/
-.output/
-.nuxt/
-.next/
-out/
-coverage/
-
-# Runtime data
-pids
-*.pid
-*.seed
-*.pid.lock
-
-# Logs
-logs
-*.log
+# Mac/Linux/Windows system files
+.DS_Store
+Thumbs.db
 
 # Environment variables
 .env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
-# Cache directories
-.cache/
-.parcel-cache/
-.npm
-.eslintcache
-.stylelintcache
-
-# Monorepo specific
-# Turborepo
-.turbo/
-.turbo
-turbo.json.bak
-
-# Nx
-.nx/
-dist/
-tmp/
-
-# PNPM
-.pnpm-store/
-.pnpm-debug.log*
-
-# Package manager locks (optional - depends on strategy)
-# package-lock.json
-# yarn.lock
-
-# IDE and editors
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
+.env.*
+!.env.example
 
 # OS generated files
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-
-# Testing
-coverage/
-.nyc_output
-junit.xml
-
-# Runtime
-*.tsbuildinfo
-.eslintcache
-
-# Temporary files
-*.tmp
-*.temp
-.temp/
-.tmp/
-
-# Documentation
-docs/build/
+*.swp
+.sublime-project
+.sublime-workspace
+*.vscode/*
+.idea/
+*.code-workspace
 
 # Docker
-Dockerfile*
-docker-compose*
-.dockerignore
+docker-compose.override.yml
+docker-compose.*.yml
+**/docker-data/
+**/.docker/
 
-# Serverless
-.serverless/
-.vercel/
-.netlify/
+# EditorConfig backup files
+*.bak
 
-# Framework specific
-# React
-build/
-.eslintcache
+# Tests/artillery outputs
+tools/load-testing/reports/
 
-# Vue
-dist/
-*.local
+# VSCode settings (if not project-wide)
+.vscode/
 
-# Angular
+# Monitoring/Prometheus runtime data (not config)
+tools/docker/monitoring/**/data/
+tools/docker/grafana/data/
+
+# Misc
+*.pid
+.pids/
+
+# pnpm/Turborepo cache
+turbo/
+.pnpm-debug.log
+
+# Ignore storybook/etc if present
+.storybook-out/
