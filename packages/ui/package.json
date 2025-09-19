@@ -1,5 +1,5 @@
 {
-  "name": "@eco-hydrate/config",
+  "name": "@eco-hydrate/ui",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,12 +10,13 @@
   "author": "",
   "license": "ISC",
   "packageManager": "pnpm@10.17.0",
-  "compilerOptions": {
-    "target": "ES2022",
-    "module": "ESNext",
-    "moduleResolution": "node",
-    "strict": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true
+  "dependencies": {
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.13",
+    "@types/react-dom": "^19.1.9",
+    "typescript": "^5.9.2"
   }
 }
