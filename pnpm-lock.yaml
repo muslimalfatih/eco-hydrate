@@ -8,9 +8,9 @@ importers:
 
   .:
     dependencies:
-      '@eco-hydrate/database':
+      '@eco-hydrate/db':
         specifier: workspace:*
-        version: link:packages/database
+        version: link:packages/db
       '@eco-hydrate/types':
         specifier: workspace:*
         version: link:packages/types
@@ -19,7 +19,7 @@ importers:
         version: link:packages/ui
       '@hookform/resolvers':
         specifier: ^5.2.2
-        version: 5.2.2(react-hook-form@7.62.0(react@19.1.0))
+        version: 5.2.2(react-hook-form@7.63.0(react@19.1.0))
       '@supabase/supabase-js':
         specifier: ^2.57.4
         version: 2.57.4
@@ -43,11 +43,14 @@ importers:
         version: 19.1.0(react@19.1.0)
       react-hook-form:
         specifier: ^7.62.0
-        version: 7.62.0(react@19.1.0)
+        version: 7.63.0(react@19.1.0)
       zod:
         specifier: ^4.1.9
         version: 4.1.9
     devDependencies:
+      '@types/node':
+        specifier: ^20.19.17
+        version: 20.19.17
       turbo:
         specifier: latest
         version: 2.5.6
@@ -56,7 +59,7 @@ importers:
     dependencies:
       '@hookform/resolvers':
         specifier: ^5.2.2
-        version: 5.2.2(react-hook-form@7.62.0(react@19.1.0))
+        version: 5.2.2(react-hook-form@7.63.0(react@19.1.0))
       '@radix-ui/react-slot':
         specifier: ^1.2.3
         version: 1.2.3(@types/react@19.1.13)(react@19.1.0)
@@ -95,7 +98,7 @@ importers:
         version: 19.1.0(react@19.1.0)
       react-hook-form:
         specifier: ^7.62.0
-        version: 7.62.0(react@19.1.0)
+        version: 7.63.0(react@19.1.0)
       tailwind-merge:
         specifier: ^3.3.1
         version: 3.3.1
@@ -136,7 +139,7 @@ importers:
 
   packages/config: {}
 
-  packages/database:
+  packages/db:
     dependencies:
       drizzle-orm:
         specifier: ^0.44.5
@@ -2174,8 +2177,8 @@ packages:
     peerDependencies:
       react: ^19.1.1
 
-  react-hook-form@7.62.0:
-    resolution: {integrity: sha512-7KWFejc98xqG/F4bAxpL41NB3o1nnvQO1RWZT3TqRZYL8RryQETGfEdVnJN2fy1crCiBLLjkRBVK05j24FxJGA==}
+  react-hook-form@7.63.0:
+    resolution: {integrity: sha512-ZwueDMvUeucovM2VjkCf7zIHcs1aAlDimZu2Hvel5C5907gUzMpm4xCrQXtRzCvsBqFjonB4m3x4LzCFI1ZKWA==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       react: ^16.8.0 || ^17 || ^18 || ^19
@@ -2745,10 +2748,10 @@ snapshots:
       '@eslint/core': 0.15.2
       levn: 0.4.1
 
-  '@hookform/resolvers@5.2.2(react-hook-form@7.62.0(react@19.1.0))':
+  '@hookform/resolvers@5.2.2(react-hook-form@7.63.0(react@19.1.0))':
     dependencies:
       '@standard-schema/utils': 0.3.0
-      react-hook-form: 7.62.0(react@19.1.0)
+      react-hook-form: 7.63.0(react@19.1.0)
 
   '@humanfs/core@0.19.1': {}
 
@@ -4441,7 +4444,7 @@ snapshots:
       react: 19.1.1
       scheduler: 0.26.0
 
-  react-hook-form@7.62.0(react@19.1.0):
+  react-hook-form@7.63.0(react@19.1.0):
     dependencies:
       react: 19.1.0
 

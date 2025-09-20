@@ -2,9 +2,9 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { supabaseBrowser } from '../../../lib/supabase';
-import { Button } from '../../../components/ui/button';
-import { Input } from '../../../components/ui/input';
+import { supabaseBrowser } from '@/lib/supabase';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');

@@ -3,21 +3,32 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "workspaces": ["apps/*", "packages/*", "tools/*"],
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "tools/*"
+  ],
   "scripts": {
-    "dev": "turbo run dev",
-    "build": "turbo run build",
+    "dev:frontend": "turbo run dev --filter=frontend",
+    "build:frontend": "turbo run build --filter=frontend",
+    "db:generate": "pnpm --filter @eco-hydrate/db exec drizzle-kit generate",
+    "db:push": "pnpm --filter @eco-hydrate/db exec drizzle-kit push",
+    "db:migrate": "pnpm db:generate && pnpm db:push",
+    "db:seed": "pnpm --filter @eco-hydrate/db exec tsx seed.ts",
     "lint": "turbo run lint",
-    "test": "turbo run test"
+    "test": "turbo run test",
+    "clean": "turbo run clean",
+    "clean:install": "pnpm run clean && pnpm install",
+    "type-check": "turbo run type-check"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "packageManager": "pnpm@10.17.0",
   "dependencies": {
-    "@eco-hydrate/ui": "workspace:*",
-    "@eco-hydrate/database": "workspace:*",
+    "@eco-hydrate/db": "workspace:*",
     "@eco-hydrate/types": "workspace:*",
+    "@eco-hydrate/ui": "workspace:*",
     "@hookform/resolvers": "^5.2.2",
     "@supabase/supabase-js": "^2.57.4",
     "@upstash/ratelimit": "^2.0.6",
@@ -30,6 +41,7 @@
     "zod": "^4.1.9"
   },
   "devDependencies": {
+    "@types/node": "^20.19.17",
     "turbo": "latest"
   }
 }

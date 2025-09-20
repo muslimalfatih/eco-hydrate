@@ -59,6 +59,7 @@ tools/docker/grafana/data/
 .pids/
 
 # pnpm/Turborepo cache
+.turbo/
 turbo/
 .pnpm-debug.log
 
