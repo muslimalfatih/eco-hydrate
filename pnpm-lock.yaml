@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@eco-hydrate/caching':
+        specifier: workspace:*
+        version: link:packages/caching
       '@eco-hydrate/db':
         specifier: workspace:*
         version: link:packages/db
@@ -17,6 +20,9 @@ importers:
       '@eco-hydrate/ui':
         specifier: workspace:*
         version: link:packages/ui
+      '@eco-hydrate/utils':
+        specifier: workspace:*
+        version: link:packages/utils
       '@hookform/resolvers':
         specifier: ^5.2.2
         version: 5.2.2(react-hook-form@7.63.0(react@19.1.0))
@@ -81,6 +87,9 @@ importers:
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
+      drizzle-orm:
+        specifier: ^0.44.5
+        version: 0.44.5(@upstash/redis@1.35.4)(postgres@3.4.7)
       framer-motion:
         specifier: ^12.23.16
         version: 12.23.16(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -137,6 +146,19 @@ importers:
         specifier: ^5
         version: 5.9.2
 
+  packages/caching:
+    dependencies:
+      '@upstash/redis':
+        specifier: ^1.28.4
+        version: 1.35.4
+    devDependencies:
+      '@eco-hydrate/config':
+        specifier: workspace:*
+        version: link:../config
+      typescript:
+        specifier: ^5.0.0
+        version: 5.9.2
+
   packages/config: {}
 
   packages/db:
@@ -175,6 +197,22 @@ importers:
         version: 19.1.9(@types/react@19.1.13)
       typescript:
         specifier: ^5.9.2
+        version: 5.9.2
+
+  packages/utils:
+    dependencies:
+      '@upstash/ratelimit':
+        specifier: ^0.4.4
+        version: 0.4.4
+      '@upstash/redis':
+        specifier: ^1.28.4
+        version: 1.35.4
+    devDependencies:
+      '@eco-hydrate/config':
+        specifier: workspace:*
+        version: link:../config
+      typescript:
+        specifier: ^5.0.0
         version: 5.9.2
 
 packages:
@@ -1100,6 +1138,13 @@ packages:
   '@upstash/core-analytics@0.0.10':
     resolution: {integrity: sha512-7qJHGxpQgQr9/vmeS1PktEwvNAF7TI4iJDi8Pu2CFZ9YUGHZH4fOP5TfYlZ4aVxfopnELiE4BS4FBjyK7V1/xQ==}
     engines: {node: '>=16.0.0'}
+
+  '@upstash/core-analytics@0.0.6':
+    resolution: {integrity: sha512-cpPSR0XJAJs4Ddz9nq3tINlPS5aLfWVCqhhtHnXt4p7qr5+/Znlt1Es736poB/9rnl1hAHrOsOvVj46NEXcVqA==}
+    engines: {node: '>=16.0.0'}
+
+  '@upstash/ratelimit@0.4.4':
+    resolution: {integrity: sha512-y3q6cNDdcRQ2MRPRf5UNWBN36IwnZ4kAEkGoH3i6OqdWwz4qlBxNsw4/Rpqn9h93+Nx1cqg5IOq7O2e2zMJY1w==}
 
   '@upstash/ratelimit@2.0.6':
     resolution: {integrity: sha512-Uak5qklMfzFN5RXltxY6IXRENu+Hgmo9iEgMPOlUs2etSQas2N+hJfbHw37OUy4vldLRXeD0OzL+YRvO2l5acg==}
@@ -3253,6 +3298,14 @@ snapshots:
   '@upstash/core-analytics@0.0.10':
     dependencies:
       '@upstash/redis': 1.35.4
+
+  '@upstash/core-analytics@0.0.6':
+    dependencies:
+      '@upstash/redis': 1.35.4
+
+  '@upstash/ratelimit@0.4.4':
+    dependencies:
+      '@upstash/core-analytics': 0.0.6
 
   '@upstash/ratelimit@2.0.6(@upstash/redis@1.35.4)':
     dependencies:
