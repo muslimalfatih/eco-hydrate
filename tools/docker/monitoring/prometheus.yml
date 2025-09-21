@@ -1,40 +1,35 @@
-# Prometheus Configuration - where to scrape metrics
 global:
-  scrape_interval: 15s      # Scrape targets every 15 seconds
-  evaluation_interval: 15s  # Evaluate rules every 15 seconds
+  scrape_interval: 15s
+  evaluation_interval: 15s
 
-# Scrape Configurations - Define what to monitor
 scrape_configs:
-  # Monitor Prometheus itself
+  # Prometheus itself
   - job_name: 'prometheus'
     static_configs:
       - targets: ['localhost:9090']
 
-  # MONITOR NEXT.JS APP
+  # Frontend instances
   - job_name: 'eco-hydrate-frontend'
     static_configs:
-      - targets: ['host.docker.internal:3000']  # Your Next.js app
-    metrics_path: '/api/metrics'  # Where your metrics endpoint is
-    scrape_interval: 30s          # Scrape every 30 seconds
-    scrape_timeout: 10s
-    
-  # Monitor multiple frontend instances (when load balancing)
-  - job_name: 'eco-hydrate-frontend-cluster'
-    static_configs:
       - targets: 
-          - 'host.docker.internal:3000'  # Instance 1
-          - 'host.docker.internal:3001'  # Instance 2  
-          - 'host.docker.internal:3002'  # Instance 3
+          - 'frontend-1:3000'
+          - 'frontend-2:3000' 
+          - 'frontend-3:3000'
     metrics_path: '/api/metrics'
-    scrape_interval: 15s
+    scrape_interval: 30s
 
-# Alerting Rules
-rule_files:
-  - "alert_rules.yml"
+  # System metrics
+  - job_name: 'node-exporter'
+    static_configs:
+      - targets: ['node-exporter:9100']
 
-# Example alert for high error rate
-alerting:
-  alertmanagers:
-    - static_configs:
-        - targets:
-          - alertmanager:9093
+  # Container metrics
+  - job_name: 'cadvisor'
+    static_configs:
+      - targets: ['cadvisor:8080']
+
+  # NGINX metrics (if available)
+  - job_name: 'nginx'
+    static_configs:
+      - targets: ['nginx:80']
+    metrics_path: '/health'

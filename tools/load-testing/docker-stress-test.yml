@@ -1,0 +1,17 @@
+config:
+  target: 'http://localhost'  # NGINX load balancer
+  phases:
+    - duration: 120
+      arrivalRate: 50
+      rampTo: 167  # ~1000 concurrent users
+      name: "Docker Stack Stress Test"
+
+scenarios:
+  - name: "Load Balanced User Journey"
+    flow:
+      - get:
+          url: "/"
+      - get:
+          url: "/api/products"
+      - get:
+          url: "/api/metrics"
