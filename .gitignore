@@ -54,6 +54,25 @@ tools/load-testing/reports/
 # tools/docker/monitoring/**/data/
 # tools/docker/grafana/data/
 
+# Tests/artillery outputs
+tools/load-testing/reports/
+
+# Load Testing Results
+tools/load-testing/ab-results-*/
+tools/load-testing/*-results/
+tools/load-testing/results/
+tools/load-testing/*.json
+tools/load-testing/*.html
+tools/load-testing/*.csv
+tools/load-testing/*.tsv
+tools/load-testing/*.txt
+tools/load-testing/reports/
+tools/load-testing/stress-test-results-*/
+
+# Artillery outputs
+tools/load-testing/artillery-report.html
+tools/load-testing/artillery-results.json
+
 # Misc
 *.pid
 .pids/
@@ -65,3 +84,6 @@ turbo/
 
 # Ignore storybook/etc if present
 .storybook-out/
+
+# Cursor
+.cursor
