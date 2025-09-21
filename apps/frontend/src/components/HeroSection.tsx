@@ -1,11 +1,11 @@
 'use client'
 
 import { motion, useScroll, useTransform, useInView } from 'framer-motion'
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, Suspense } from 'react'
 import { useABTest } from '@/hooks/useABTest' // Your updated hook
 import { Button } from '@/components/ui/button'
 
-export function HeroSection() {
+function HeroContent() {
   const { variant, headline, trackEvent, switchVariant } = useABTest()
   const heroRef = useRef(null)
   const isInView = useInView(heroRef, { once: true })
@@ -115,5 +115,36 @@ export function HeroSection() {
         </motion.div> */}
       </motion.div>
     </section>
+  )
+}
+
+// Loading fallback component
+function HeroFallback() {
+  return (
+    <section className="hero relative min-h-screen flex items-center justify-center">
+      <div className="absolute inset-0 bg-gradient-to-br from-green-50 via-blue-50 to-emerald-50" />
+      <div className="text-center max-w-5xl px-4 z-10">
+        <h1 className="text-6xl md:text-8xl font-bold text-gray-900 mb-8">
+          Eco-Friendly Water Bottle For a Greener Tomorrow
+        </h1>
+        <div className="flex gap-6 justify-center">
+          <Button size="lg" disabled>
+            🌱 Get Your Eco Bottle
+          </Button>
+          <Button variant="outline" size="lg" disabled>
+            Learn More
+          </Button>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// Main component with Suspense boundary
+export function HeroSection() {
+  return (
+    <Suspense fallback={<HeroFallback />}>
+      <HeroContent />
+    </Suspense>
   )
 }
