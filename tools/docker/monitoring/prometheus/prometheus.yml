@@ -1,8 +1,0 @@
-global:
-  scrape_interval: 15s
-
-scrape_configs:
-  - job_name: 'nextjs-app'
-    static_configs:
-      - targets: ['frontend-1:3000', 'frontend-2:3001']
-    metrics_path: '/api/metrics'

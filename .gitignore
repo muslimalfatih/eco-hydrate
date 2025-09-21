@@ -51,8 +51,8 @@ tools/load-testing/reports/
 .vscode/
 
 # Monitoring/Prometheus runtime data (not config)
-tools/docker/monitoring/**/data/
-tools/docker/grafana/data/
+# tools/docker/monitoring/**/data/
+# tools/docker/grafana/data/
 
 # Misc
 *.pid

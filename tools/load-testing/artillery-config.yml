@@ -1,0 +1,92 @@
+# Comprehensive Load Testing Configuration
+config:
+  target: 'http://localhost'
+  phases:
+    # Warm-up phase
+    - duration: 60
+      arrivalRate: 5
+      name: "Warm-up"
+    
+    # Gradual load increase
+    - duration: 300
+      arrivalRate: 10
+      rampTo: 50
+      name: "Ramp up"
+    
+    # Sustained load
+    - duration: 600
+      arrivalRate: 50
+      rampTo: 100
+      name: "Sustained load"
+    
+    # Peak load - This tests your 1000+ concurrent users requirement
+    - duration: 300
+      arrivalRate: 100
+      rampTo: 200
+      name: "Peak load"
+    
+    # Stress test
+    - duration: 120
+      arrivalRate: 200
+      rampTo: 500
+      name: "Stress test"
+    
+    # Cool down
+    - duration: 60
+      arrivalRate: 500
+      rampTo: 10
+      name: "Cool down"
+
+  # Performance targets
+  ensure:
+    maxErrorRate: 1          # Less than 1% errors
+    p95: 200                 # 95% of requests under 200ms
+    p99: 500                 # 99% of requests under 500ms
+
+  processor: "./functions.js"
+
+scenarios:
+  # A/B TESTING FLOW (40% of traffic)
+  - name: "A/B Testing User Journey"
+    weight: 40
+    flow:
+      - get:
+          url: "/"
+          capture:
+            - json: "$.variant"
+              as: "variant"
+      - get:
+          url: "/?variant=A"
+      - get:
+          url: "/?variant=B" 
+      - post:
+          url: "/api/analytics/track"
+          json:
+            event: "page_view"
+            variant: "{{ variant }}"
+            timestamp: "{{ $timestamp }}"
+
+  # PRODUCT BROWSING (20% of traffic)
+  - name: "Product Browsing"
+    weight: 20
+    flow:
+      - get:
+          url: "/products"
+      - get:
+          url: "/products/eco-hydrate-classic"
+      - get:
+          url: "/products/eco-hydrate-pro"
+
+  # ANALYTICS TRACKING (10% of traffic)  
+  - name: "Heavy Analytics"
+    weight: 10
+    flow:
+      - loop:
+          - post:
+              url: "/api/analytics/track"
+              json:
+                event: "{{ $randomString() }}"
+                properties:
+                  variant: "{{ $randomString() }}"
+                  page: "home"
+        count: 5

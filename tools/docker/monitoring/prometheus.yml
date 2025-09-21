@@ -1,0 +1,40 @@
+# Prometheus Configuration - where to scrape metrics
+global:
+  scrape_interval: 15s      # Scrape targets every 15 seconds
+  evaluation_interval: 15s  # Evaluate rules every 15 seconds
+
+# Scrape Configurations - Define what to monitor
+scrape_configs:
+  # Monitor Prometheus itself
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  # MONITOR NEXT.JS APP
+  - job_name: 'eco-hydrate-frontend'
+    static_configs:
+      - targets: ['host.docker.internal:3000']  # Your Next.js app
+    metrics_path: '/api/metrics'  # Where your metrics endpoint is
+    scrape_interval: 30s          # Scrape every 30 seconds
+    scrape_timeout: 10s
+    
+  # Monitor multiple frontend instances (when load balancing)
+  - job_name: 'eco-hydrate-frontend-cluster'
+    static_configs:
+      - targets: 
+          - 'host.docker.internal:3000'  # Instance 1
+          - 'host.docker.internal:3001'  # Instance 2  
+          - 'host.docker.internal:3002'  # Instance 3
+    metrics_path: '/api/metrics'
+    scrape_interval: 15s
+
+# Alerting Rules
+rule_files:
+  - "alert_rules.yml"
+
+# Example alert for high error rate
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+          - alertmanager:9093
