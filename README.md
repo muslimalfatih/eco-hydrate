@@ -16,7 +16,7 @@ cd eco-hydrate
 pnpm install
 
 # Start development
-cd apps/frontend \&\& pnpm dev
+cd apps/frontend && pnpm dev
 ```
 
 **Access Points:**
@@ -60,8 +60,7 @@ cd apps/frontend \&\& pnpm dev
 
 ### High-Level Architecture
 
-```
-
+```bash
 graph TB
 Client[Client Browser] --> LB[NGINX Load Balancer]
 LB --> F1[Frontend Instance 1]
@@ -89,7 +88,7 @@ LB --> F3[Frontend Instance 3]
 
 ```
 ### System Components
-
+```bash
 ┌─────────────────────────────────────────────────────────────┐
 │                    PRESENTATION LAYER                       │
 ├─────────────────────────────────────────────────────────────┤
@@ -133,7 +132,7 @@ LB --> F3[Frontend Instance 3]
 ```
 ---
 
-```
+
 ## 🛠️ Technology Stack
 
 ### Frontend
@@ -231,13 +230,11 @@ LB --> F3[Frontend Instance 3]
 
 1. **Clone and Install**
 ```bash
-
 git clone git@github.com:muslimalfatih/eco-hydrate.git
 cd eco-hydrate
 pnpm install
 
 ```
-
 2. **Environment Variables**
 ```bash
 cp .env.example .env.local
@@ -256,8 +253,6 @@ pnpm db:seed
 
 4. **Start Development**
 ```bash
-
-
 # Start the application
 cd apps/frontend
 pnpm dev
